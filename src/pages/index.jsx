@@ -32,7 +32,7 @@ const IndexPage = ({ data }) => {
   )
 }
 
-export const querty = graphql`
+export const query = graphql`
   query IndexPageQuery {
     allMarkdownRemark {
       nodes {
