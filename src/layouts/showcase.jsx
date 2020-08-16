@@ -13,7 +13,8 @@ const List = styled.ul`
   justify-content: space-around;
 
   list-style: none;
-  padding: 0;
+  padding: 20px;
+  margin: 0;
 `
 
 export default ShowcaseLayout

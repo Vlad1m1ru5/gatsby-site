@@ -19,7 +19,6 @@ const IndexPage = ({ data }) => {
     <MetaLayout>
       <HeaderLayout>
         <FooterLayout>
-          <p>Hello world</p>
           <ShowcaseLayout>
             {data.allMarkdownRemark.nodes
               .map(({ frontmatter }) => frontmatter)
