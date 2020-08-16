@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import HeaderLayout from "layouts/header"
 import FooterLayout from "layouts/footer"
+import MetaLayout from "layouts/meta"
 
 const IndexPage = ({ data }) => {
 
@@ -15,17 +16,19 @@ const IndexPage = ({ data }) => {
   )
 
   return (
-    <HeaderLayout>
-      <FooterLayout>
-        <p>Hello world</p>
-        <ul>
-          {data.allMarkdownRemark.nodes
-            .map(({ frontmatter }) => frontmatter)
-            .map(getListItem)
-          }
-        </ul>
-      </FooterLayout>
-    </HeaderLayout>
+    <MetaLayout>
+      <HeaderLayout>
+        <FooterLayout>
+          <p>Hello world</p>
+          <ul>
+            {data.allMarkdownRemark.nodes
+              .map(({ frontmatter }) => frontmatter)
+              .map(getListItem)
+            }
+          </ul>
+        </FooterLayout>
+      </HeaderLayout>
+    </MetaLayout>
   )
 }
 
