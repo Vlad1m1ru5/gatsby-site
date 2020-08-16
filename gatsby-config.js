@@ -8,6 +8,14 @@ module.exports = {
   /* Your site config here */
   plugins: [
     {
+      resolve: "gatsby-alias-imports",
+      options: {
+        aliases: {
+          layouts: "layouts/"
+        }
+      }
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "documents",

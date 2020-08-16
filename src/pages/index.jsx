@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import HeaderLayout from "layouts/header"
 
 const IndexPage = ({ data }) => {
 
@@ -13,7 +14,7 @@ const IndexPage = ({ data }) => {
   )
 
   return (
-    <div>
+    <HeaderLayout>
       <p>Hello world</p>
       <ul>
         {data.allMarkdownRemark.nodes
@@ -21,7 +22,7 @@ const IndexPage = ({ data }) => {
           .map(getListItem)
         }
       </ul>
-    </div>
+    </HeaderLayout>
   )
 }
 
