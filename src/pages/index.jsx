@@ -3,15 +3,13 @@ import { graphql } from "gatsby"
 import HeaderLayout from "layouts/header"
 import FooterLayout from "layouts/footer"
 import MetaLayout from "layouts/meta"
+import DocumentCard from "components/document-card"
 
 const IndexPage = ({ data }) => {
 
   const getListItem = ({ title, date }, index) => (
     <li key={index}>
-      <section>
-        <h3>{title}</h3>
-        <span>{date}</span>
-      </section>
+      <DocumentCard header={title} footer={date} />
     </li>
   )
 
