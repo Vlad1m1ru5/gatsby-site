@@ -8,11 +8,6 @@ const GlobalStyles = () => {
       margin: 0;
 
       font-family: Arial, Helvetica, sans-serif;
-
-      * {
-        background-color: white;
-        color: black;
-      }
     }
   `
 
