@@ -4,8 +4,13 @@ import { Global, css } from "@emotion/core"
 const GlobalStyles = () => {
   
   const globalStyles = css`
-    body: {
+    body {
       margin: 0;
+
+      * {
+        background-color: white;
+        color: black;
+      }
     }
   `
 
