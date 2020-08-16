@@ -1,8 +1,9 @@
 import React from "react"
 import { graphql } from "gatsby"
+import MetaLayout from "layouts/meta"
 import HeaderLayout from "layouts/header"
 import FooterLayout from "layouts/footer"
-import MetaLayout from "layouts/meta"
+import ShowcaseLayout from "layouts/showcase"
 import DocumentCard from "components/document-card"
 import GlobalStyles from "components/global-styles"
 
@@ -19,12 +20,12 @@ const IndexPage = ({ data }) => {
       <HeaderLayout>
         <FooterLayout>
           <p>Hello world</p>
-          <ul>
+          <ShowcaseLayout>
             {data.allMarkdownRemark.nodes
               .map(({ frontmatter }) => frontmatter)
               .map(getListItem)
             }
-          </ul>
+          </ShowcaseLayout>
         </FooterLayout>
       </HeaderLayout>
       <GlobalStyles />
