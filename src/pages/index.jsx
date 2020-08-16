@@ -4,6 +4,7 @@ import HeaderLayout from "layouts/header"
 import FooterLayout from "layouts/footer"
 import MetaLayout from "layouts/meta"
 import DocumentCard from "components/document-card"
+import GlobalStyles from "components/global-styles"
 
 const IndexPage = ({ data }) => {
 
@@ -26,6 +27,7 @@ const IndexPage = ({ data }) => {
           </ul>
         </FooterLayout>
       </HeaderLayout>
+      <GlobalStyles />
     </MetaLayout>
   )
 }

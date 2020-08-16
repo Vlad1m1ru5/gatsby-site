@@ -24,6 +24,7 @@ module.exports = {
         path: `${__dirname}/_documents`
       }
     },
-    "gatsby-transformer-remark"
+    "gatsby-transformer-remark",
+    "gatsby-plugin-emotion"
   ],
 }
