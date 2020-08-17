@@ -10,6 +10,7 @@ import GlobalStyles from 'components/global-styles'
 interface IFrontmatter {
   title: string
   date: string
+  description: string
 }
 
 interface INode {
@@ -26,18 +27,15 @@ interface IProps {
 
 const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
 
-  const getDocumentCard = ({ title, date }: IFrontmatter, index: number) => (
+  const getFrontmatter = ({ frontmatter }: INode) => frontmatter
+
+  const getDocumentCard = ({ title, date, description }: IFrontmatter, index: number) => (
     <DocumentCard
       key={index}
       header={title}
+      text={description}
       footer={date}
     />
-  )
-
-  const getListItem = (children: React.ReactElement, index: number) => (
-    <li key={index}>
-      {children}
-    </li>
   )
 
   return (
@@ -46,9 +44,8 @@ const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
         <FooterLayout>
           <ShowcaseLayout>
             {data.allMarkdownRemark.nodes
-              .map(({ frontmatter }) => frontmatter)
+              .map(getFrontmatter)
               .map(getDocumentCard)
-              .map(getListItem)
             }
           </ShowcaseLayout>
         </FooterLayout>
@@ -65,6 +62,7 @@ export const query = graphql`
         frontmatter {
           title
           date
+          description
         }
       }
     }

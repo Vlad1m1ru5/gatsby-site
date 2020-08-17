@@ -11,27 +11,31 @@ const DocumentCard: React.FunctionComponent<IProps> = ({
   header = '',
   text = '',
   footer = ''
-}) => {
+}) => (
+  <section css={documentCardCss}>
+    <h3>{header}</h3>
+    <span>{text}</span>
+    <small>{footer}</small>
+  </section>  
+)
 
-  const cardStyle = css`
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
+const documentCardCss = css`
+  padding: 10px;
 
-    .card__header {
-      margin-top: 0;
-    }
-  `
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12),
+              0 1px 2px rgba(0,0,0,0.24);
 
-  return (
-    <section className='document-card' css={cardStyle}>
-      <h3 className='document-card__header'>{header}</h3>
-      <span className='document-card__text'>{text}</span>
-      <hr />
-      <small className='document-card__footer'>{footer}</small>
-    </section>  
-  )
-}
+  &:hover {
+    cursor: pointer;
+
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+                0 10px 10px rgba(0,0,0,0.22);
+  }
+
+  & > h3 {
+    margin-top: 0;
+  }
+`
 
 export default DocumentCard
