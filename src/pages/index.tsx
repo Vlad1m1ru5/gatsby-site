@@ -7,6 +7,7 @@ import ShowcaseLayout from 'layouts/showcase'
 import DocumentCard from 'components/document-card'
 import GlobalStyles from 'components/global-styles'
 import MainLayout from 'layouts/main'
+import NavigationLayout from 'layouts/navigation'
 
 interface IFrontmatter {
   title: string
@@ -49,16 +50,18 @@ const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
   return (
     <MetaLayout>
       <HeaderLayout>
-        <FooterLayout>
-          <MainLayout>
-            <ShowcaseLayout>
-              {data.allMarkdownRemark.nodes
-                .map(getFrontmatter)
-                .map(getDocumentCard)
-              }
-            </ShowcaseLayout>
-          </MainLayout>
-        </FooterLayout>
+        <NavigationLayout>
+          <FooterLayout>
+            <MainLayout>
+              <ShowcaseLayout>
+                {data.allMarkdownRemark.nodes
+                  .map(getFrontmatter)
+                  .map(getDocumentCard)
+                }
+              </ShowcaseLayout>
+            </MainLayout>
+          </FooterLayout>
+        </NavigationLayout>
       </HeaderLayout>
       <GlobalStyles />
     </MetaLayout>
