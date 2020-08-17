@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-const MetaLayout = ({ children }) => (
+const MetaLayout: React.FunctionComponent = ({ children }) => (
   <>
     <Helmet>
       <title>Gatsby site</title>

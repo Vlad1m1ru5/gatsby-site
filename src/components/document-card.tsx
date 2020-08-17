@@ -1,10 +1,16 @@
 import React from 'react'
 import { css } from '@emotion/core'
 
-const DocumentCard = ({
-  header,
-  text,
-  footer
+interface IProps {
+  header?: string
+  text?: string
+  footer?: string
+}
+
+const DocumentCard: React.FunctionComponent<IProps> = ({
+  header = '',
+  text = '',
+  footer = ''
 }) => {
 
   const cardStyle = css`

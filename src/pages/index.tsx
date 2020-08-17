@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 import MetaLayout from 'layouts/meta'
 import HeaderLayout from 'layouts/header'
@@ -7,11 +7,36 @@ import ShowcaseLayout from 'layouts/showcase'
 import DocumentCard from 'components/document-card'
 import GlobalStyles from 'components/global-styles'
 
-const IndexPage: FunctionComponent = ({ data }) => {
+interface IFrontmatter {
+  title: string
+  date: string
+}
 
-  const getListItem = ({ title, date }, index) => (
+interface INode {
+  frontmatter: IFrontmatter
+}
+
+interface IProps {
+  data: {
+    allMarkdownRemark: {
+      nodes: INode[]
+    }
+  }
+}
+
+const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
+
+  const getDocumentCard = ({ title, date }: IFrontmatter, index: number) => (
+    <DocumentCard
+      key={index}
+      header={title}
+      footer={date}
+    />
+  )
+
+  const getListItem = (children: React.ReactElement, index: number) => (
     <li key={index}>
-      <DocumentCard header={title} footer={date} />
+      {children}
     </li>
   )
 
@@ -22,6 +47,7 @@ const IndexPage: FunctionComponent = ({ data }) => {
           <ShowcaseLayout>
             {data.allMarkdownRemark.nodes
               .map(({ frontmatter }) => frontmatter)
+              .map(getDocumentCard)
               .map(getListItem)
             }
           </ShowcaseLayout>

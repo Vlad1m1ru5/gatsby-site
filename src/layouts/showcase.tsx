@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-const ShowcaseLayout = ({ children }) => (
+const ShowcaseLayout: React.FunctionComponent = ({ children }) => (
   <List>
     {children}
   </List>
