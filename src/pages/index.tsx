@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import MetaLayout from 'layouts/meta'
 import HeaderLayout from 'layouts/header'
 import FooterLayout from 'layouts/footer'
@@ -7,16 +7,7 @@ import ShowcaseLayout from 'layouts/showcase'
 import DocumentCard from 'components/document-card'
 import GlobalStyles from 'components/global-styles'
 import MainLayout from 'layouts/main'
-
-interface IFrontmatter {
-  title: string
-  date: string
-  description: string
-}
-
-interface INode {
-  frontmatter: IFrontmatter
-}
+import NavigationLayout from 'layouts/navigation'
 
 interface IProps {
   data: {
@@ -28,37 +19,38 @@ interface IProps {
 
 const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
 
-  const getFrontmatter = ({ frontmatter }: INode) => frontmatter
-
-  const getDocumentCard = (
-    {
+  const getDocumentCardLink = ({
+    id,
+    fields: {
+      slug
+    },
+    frontmatter: {
       title,
       date,
       description
-    }: IFrontmatter,
-    index: number
-  ) => (
-    <DocumentCard
-      key={index}
-      header={title}
-      text={description}
-      footer={date}
-    />
+    }
+  }: INode) => (
+    <Link key={id} to={slug}>
+      <DocumentCard
+        header={title}
+        text={description}
+        footer={date}
+      />
+    </Link>
   )
 
   return (
     <MetaLayout>
       <HeaderLayout>
-        <FooterLayout>
-          <MainLayout>
-            <ShowcaseLayout>
-              {data.allMarkdownRemark.nodes
-                .map(getFrontmatter)
-                .map(getDocumentCard)
-              }
-            </ShowcaseLayout>
-          </MainLayout>
-        </FooterLayout>
+        <NavigationLayout>
+          <FooterLayout>
+            <MainLayout>
+              <ShowcaseLayout>
+                {data.allMarkdownRemark.nodes.map(getDocumentCardLink)}
+              </ShowcaseLayout>
+            </MainLayout>
+          </FooterLayout>
+        </NavigationLayout>
       </HeaderLayout>
       <GlobalStyles />
     </MetaLayout>
@@ -67,8 +59,12 @@ const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
 
 export const query = graphql`
   query IndexPageQuery {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: { fields: [frontmatter___title], order: ASC }) {
       nodes {
+        id
+        fields {
+          slug
+        }
         frontmatter {
           title
           date
