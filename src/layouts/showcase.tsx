@@ -45,6 +45,8 @@ const List = styled.ul`
   padding: 20px;
   margin: 0;
 
+  max-width: 960px;
+
   & > * {
     margin: 10px;
   }
