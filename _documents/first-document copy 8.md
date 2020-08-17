@@ -1,4 +1,4 @@
 ---
 title: My document 8
-date: 16 
+date: 16
 ---

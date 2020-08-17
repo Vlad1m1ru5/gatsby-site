@@ -20,10 +20,18 @@ const DocumentCard: React.FunctionComponent<IProps> = ({
 )
 
 const documentCardCss = css`
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 10px;
+
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12),
+              0 1px 2px rgba(0,0,0,0.24);
+
+  &:hover {
+    cursor: pointer;
+
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+                0 10px 10px rgba(0,0,0,0.22);
+  }
 
   & > h3 {
     margin-top: 0;
