@@ -22,18 +22,25 @@ const Item = styled.li`
   flex-basis: 0;
   flex-grow: 1;
 
-  @media screen and (min-width: 380px) {
+  @media screen and (max-width: 460px) {
     max-width: 100%;
+    min-width: 75%;
   }
 
-  @media screen and (min-width: 540px) {
+  @media screen and (min-width: 460px) {
     max-width: 50%;
+    min-width: 40%;
+  }
+
+  @media screen and (min-width: 700px) {
+    max-width: 30%;
+    min-width: 25%;
   }
 
   @media screen and (min-width: 940px) {
     max-width: 25%;
+    min-width: 20%;
   }
-
 `
 
 const List = styled.ul`
@@ -44,6 +51,8 @@ const List = styled.ul`
   list-style: none;
   padding: 20px;
   margin: 0;
+
+  max-width: 960px;
 
   & > * {
     margin: 10px;
