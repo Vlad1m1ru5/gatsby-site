@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import MetaLayout from 'layouts/meta'
 import HeaderLayout from 'layouts/header'
 import FooterLayout from 'layouts/footer'
@@ -8,16 +8,6 @@ import DocumentCard from 'components/document-card'
 import GlobalStyles from 'components/global-styles'
 import MainLayout from 'layouts/main'
 import NavigationLayout from 'layouts/navigation'
-
-interface IFrontmatter {
-  title: string
-  date: string
-  description: string
-}
-
-interface INode {
-  frontmatter: IFrontmatter
-}
 
 interface IProps {
   data: {
@@ -29,22 +19,32 @@ interface IProps {
 
 const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
 
-  const getFrontmatter = ({ frontmatter }: INode) => frontmatter
+  const getDocumentCardLinkData = ({ frontmatter, id, fields: { slug } }: INode) => ({
+    frontmatter,
+    id,
+    slug
+  })
 
-  const getDocumentCard = (
-    {
+  const getDocumentCardLink = ({
+    id,
+    slug,
+    frontmatter: {
       title,
       date,
       description
-    }: IFrontmatter,
-    index: number
-  ) => (
-    <DocumentCard
-      key={index}
-      header={title}
-      text={description}
-      footer={date}
-    />
+    }
+  }: {
+    id: string,
+    slug: string,
+    frontmatter: IFrontmatter
+  }) => (
+    <Link key={id} to={slug}>
+      <DocumentCard
+        header={title}
+        text={description}
+        footer={date}
+      />
+    </Link>
   )
 
   return (
@@ -55,8 +55,8 @@ const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
             <MainLayout>
               <ShowcaseLayout>
                 {data.allMarkdownRemark.nodes
-                  .map(getFrontmatter)
-                  .map(getDocumentCard)
+                  .map(getDocumentCardLinkData)
+                  .map(getDocumentCardLink)
                 }
               </ShowcaseLayout>
             </MainLayout>
@@ -72,6 +72,10 @@ export const query = graphql`
   query IndexPageQuery {
     allMarkdownRemark {
       nodes {
+        id
+        fields {
+          slug
+        }
         frontmatter {
           title
           date
