@@ -1,7 +1,7 @@
-import React from "react"
-import styled from "@emotion/styled"
+import React from 'react'
+import styled from '@emotion/styled'
 
-const HeaderLayout = ({ children }) => (
+const HeaderLayout: React.FunctionComponent  = ({ children }) => (
   <>
     <Header>
       <h1>This header is displayed on every page</h1>

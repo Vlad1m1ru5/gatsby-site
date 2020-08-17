@@ -1,6 +1,6 @@
-import React from "react"
+import React from 'react'
 
-const FooterPage = ({ children }) => (
+const FooterPage: React.FunctionComponent = ({ children }) => (
   <>
     {children}
     <footer>
