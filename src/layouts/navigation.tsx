@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
+import { useStaticQuery, graphql, Link } from 'gatsby'
 
 const NavigationLayout: React.FunctionComponent = ({ children }) => {
 
@@ -8,6 +9,38 @@ const NavigationLayout: React.FunctionComponent = ({ children }) => {
   const openNavigation = () => { setIsVisibleNavigation(true) }
 
   const closeNavigation = () => { setIsVisibleNavigation(false) }
+
+  const data = useStaticQuery(graphql`
+    query NavigationQuery {
+      allMarkdownRemark(sort: { fields: [frontmatter___title], order: ASC }) {
+        nodes {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
+  `)
+
+  const getSlugLink = ({
+    id,
+    fields: {
+      slug
+    },
+    frontmatter: {
+      title
+    }
+  }: INode) => (
+    <Link key={id} to={slug}>{title}</Link>
+  )
+
+  const getListItem = (node: React.ReactNode, index: number) => (
+    <li key={index}>{node}</li>
+  ) 
 
   return (
     <>
@@ -20,12 +53,7 @@ const NavigationLayout: React.FunctionComponent = ({ children }) => {
           Навигация
         </label>
         <ul>
-          <li>Пункт 1</li>
-          <li>Пункт 2</li>
-          <li>Пункт 3</li>
-          <li>Пункт 4</li>
-          <li>Пункт 5</li>
-          <li>Пункт 6</li>
+          {data.allMarkdownRemark.nodes.map(getSlugLink).map(getListItem)}
         </ul>
       </Content>
       {children}

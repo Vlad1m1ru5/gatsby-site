@@ -19,25 +19,17 @@ interface IProps {
 
 const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
 
-  const getDocumentCardLinkData = ({ frontmatter, id, fields: { slug } }: INode) => ({
-    frontmatter,
-    id,
-    slug
-  })
-
   const getDocumentCardLink = ({
     id,
-    slug,
+    fields: {
+      slug
+    },
     frontmatter: {
       title,
       date,
       description
     }
-  }: {
-    id: string,
-    slug: string,
-    frontmatter: IFrontmatter
-  }) => (
+  }: INode) => (
     <Link key={id} to={slug}>
       <DocumentCard
         header={title}
@@ -54,10 +46,7 @@ const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
           <FooterLayout>
             <MainLayout>
               <ShowcaseLayout>
-                {data.allMarkdownRemark.nodes
-                  .map(getDocumentCardLinkData)
-                  .map(getDocumentCardLink)
-                }
+                {data.allMarkdownRemark.nodes.map(getDocumentCardLink)}
               </ShowcaseLayout>
             </MainLayout>
           </FooterLayout>
@@ -70,7 +59,7 @@ const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
 
 export const query = graphql`
   query IndexPageQuery {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: { fields: [frontmatter___title], order: ASC }) {
       nodes {
         id
         fields {
