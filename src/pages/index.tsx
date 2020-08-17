@@ -26,6 +26,8 @@ interface IProps {
 
 const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
 
+  const getFrontmatter = ({ frontmatter }: INode) => frontmatter
+
   const getDocumentCard = ({ title, date }: IFrontmatter, index: number) => (
     <DocumentCard
       key={index}
@@ -46,7 +48,7 @@ const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
         <FooterLayout>
           <ShowcaseLayout>
             {data.allMarkdownRemark.nodes
-              .map(({ frontmatter }) => frontmatter)
+              .map(getFrontmatter)
               .map(getDocumentCard)
               .map(getListItem)
             }
