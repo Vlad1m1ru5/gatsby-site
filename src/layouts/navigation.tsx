@@ -1,28 +1,47 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 
-const NavigationLayout: React.FunctionComponent = ({ children }) => (
-  <>
-    <Navigation>
-      <h2>Навигация</h2>
-      <ul>
-        <li>Пункт 1</li>
-        <li>Пункт 2</li>
-        <li>Пункт 3</li>
-        <li>Пункт 4</li>
-        <li>Пункт 5</li>
-        <li>Пункт 6</li>
-      </ul>
-    </Navigation>
-    {children}
-  </>
-)
+const NavigationLayout: React.FunctionComponent = ({ children }) => {
 
-const Navigation = styled.section`
+  const [isVisibleNavigation, setIsVisibleNavigation] = useState(false)
+  
+  const openNavigation = () => { setIsVisibleNavigation(true) }
+
+  const closeNavigation = () => { setIsVisibleNavigation(false) }
+
+  return (
+    <>
+      <Preview isVisible={!isVisibleNavigation}>
+        <button onClick={openNavigation}>Открыть</button>
+      </Preview>
+      <Content isVisible={isVisibleNavigation}>
+        <label>
+          <button onClick={closeNavigation}>Закрыть</button>
+          Навигация
+        </label>
+        <ul>
+          <li>Пункт 1</li>
+          <li>Пункт 2</li>
+          <li>Пункт 3</li>
+          <li>Пункт 4</li>
+          <li>Пункт 5</li>
+          <li>Пункт 6</li>
+        </ul>
+      </Content>
+      {children}
+    </>
+  )
+}
+
+const Navigation = styled.div<{ isVisible: boolean }>`
   position: fixed;
-  top: 0;
-  right: 0;
 
+  visibility: ${({ isVisible }) => isVisible ? 'visible' : 'hidden'};
+`
+
+const Preview = styled(Navigation)``
+
+const Content = styled(Preview)`
   height: 100vh;
 
   display: flex;
