@@ -35,13 +35,16 @@ const NavigationLayout: React.FunctionComponent = ({ children }) => {
 
 const Navigation = styled.div<{ isVisible: boolean }>`
   position: fixed;
+  
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   visibility: ${({ isVisible }) => isVisible ? 'visible' : 'hidden'};
 `
 
 const Preview = styled(Navigation)``
 
-const Content = styled(Preview)`
+const Content = styled(Navigation)`
   height: 100vh;
 
   display: flex;
@@ -50,6 +53,10 @@ const Content = styled(Preview)`
   background-color: white;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19),
               0 6px 6px rgba(0,0,0,0.23);
+
+  @media screen and (max-width: 380px) {
+    width: 100%;
+  }
 `
 
 export default NavigationLayout
