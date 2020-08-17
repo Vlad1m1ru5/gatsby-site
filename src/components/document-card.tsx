@@ -1,5 +1,5 @@
-import React from "react"
-import { css } from "@emotion/core"
+import React from 'react'
+import { css } from '@emotion/core'
 
 const DocumentCard = ({
   header,
@@ -19,11 +19,11 @@ const DocumentCard = ({
   `
 
   return (
-    <section className="document-card" css={cardStyle}>
-      <h3 className="document-card__header">{header}</h3>
-      <span className="document-card__text">{text}</span>
+    <section className='document-card' css={cardStyle}>
+      <h3 className='document-card__header'>{header}</h3>
+      <span className='document-card__text'>{text}</span>
       <hr />
-      <small className="document-card__footer">{footer}</small>
+      <small className='document-card__footer'>{footer}</small>
     </section>  
   )
 }

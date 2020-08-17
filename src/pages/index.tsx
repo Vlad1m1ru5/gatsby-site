@@ -1,13 +1,13 @@
-import React from "react"
-import { graphql } from "gatsby"
-import MetaLayout from "layouts/meta"
-import HeaderLayout from "layouts/header"
-import FooterLayout from "layouts/footer"
-import ShowcaseLayout from "layouts/showcase"
-import DocumentCard from "components/document-card"
-import GlobalStyles from "components/global-styles"
+import React, { FunctionComponent } from 'react'
+import { graphql } from 'gatsby'
+import MetaLayout from 'layouts/meta'
+import HeaderLayout from 'layouts/header'
+import FooterLayout from 'layouts/footer'
+import ShowcaseLayout from 'layouts/showcase'
+import DocumentCard from 'components/document-card'
+import GlobalStyles from 'components/global-styles'
 
-const IndexPage = ({ data }) => {
+const IndexPage: FunctionComponent = ({ data }) => {
 
   const getListItem = ({ title, date }, index) => (
     <li key={index}>
