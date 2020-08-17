@@ -30,7 +30,14 @@ const IndexPage: React.FunctionComponent<IProps> = ({ data }) => {
 
   const getFrontmatter = ({ frontmatter }: INode) => frontmatter
 
-  const getDocumentCard = ({ title, date, description }: IFrontmatter, index: number) => (
+  const getDocumentCard = (
+    {
+      title,
+      date,
+      description
+    }: IFrontmatter,
+    index: number
+  ) => (
     <DocumentCard
       key={index}
       header={title}
