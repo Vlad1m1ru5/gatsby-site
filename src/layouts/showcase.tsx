@@ -20,6 +20,20 @@ const ShowcaseLayout: React.FunctionComponent = ({ children }) => {
 
 const Item = styled.li`
   flex-basis: 0;
+  flex-grow: 1;
+
+  @media screen and (min-width: 380px) {
+    max-width: 100%;
+  }
+
+  @media screen and (min-width: 540px) {
+    max-width: 50%;
+  }
+
+  @media screen and (min-width: 940px) {
+    max-width: 25%;
+  }
+
 `
 
 const List = styled.ul`
